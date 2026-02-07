@@ -1,12 +1,153 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Just As You Are</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Just As You Are</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #ffffff;
+    color: #333;
+    line-height: 1.8;
+  }
+
+  section {
+    min-height: 100vh;
+    padding: 48px 24px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    font-weight: 400;
+    margin-bottom: 8px;
+  }
+
+  p {
+    max-width: 340px;
+    margin: 0 auto;
+    font-size: 1rem;
+  }
+
+  .soft {
+    background: #fff;
+  }
+
+  .memory {
+    background: #fafafa;
+  }
+
+  .ending {
+    background: #fff;
+  }
+
+  /* overlay */
+  .overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(255,255,255,0.92);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    text-align: center;
+    padding: 24px;
+  }
+
+  .overlay.show {
+    display: flex;
+  }
+
+  .tap {
+    font-size: 0.85rem;
+    color: #777;
+    margin-top: 16px;
+  }
+</style>
 </head>
-<body style="font-family: system-ui; text-align:center; padding:40px;">
-  <h1>I like you, very much.</h1>
-  <p>Just as you are.</p>
+
+<body>
+
+<!-- COVER -->
+<section class="soft">
+  <div>
+    <h1>I like you, very much.</h1>
+    <p>Just as you are.</p>
+  </div>
+</section>
+
+<!-- MEMORY -->
+<section class="memory">
+  <div>
+    <p>
+      ปีที่ผ่านมา<br>
+      ไม่ได้สมบูรณ์แบบทุกวัน<br><br>
+      แต่เรายังหัวเราะ<br>
+      ยังงอนกัน<br>
+      แล้วยังเลือกอยู่ด้วยกัน
+    </p>
+  </div>
+</section>
+
+<!-- LOCK POINT -->
+<section id="lock" class="memory">
+  <div>
+    <p>
+      บางวันที่เธอไม่ได้น่ารัก<br>
+      บางวันที่เราไม่เข้าใจกัน<br><br>
+      เราก็ยังไม่เดินไปไหน
+    </p>
+  </div>
+</section>
+
+<!-- END -->
+<section class="ending">
+  <div>
+    <p>
+      ไม่ได้รักเพราะเธอพยายาม<br>
+      แต่เพราะเธอเป็นเธอ<br><br>
+      Still you.<br>
+      Still us.
+    </p>
+  </div>
+</section>
+
+<!-- OVERLAY -->
+<div id="overlay" class="overlay">
+  <div>
+    <p>หยุดตรงนี้ก่อนนะ</p>
+    <div class="tap">แตะเบา ๆ เพื่อไปต่อ</div>
+  </div>
+</div>
+
+<script>
+  let locked = true;
+  const lockSection = document.getElementById("lock");
+  const overlay = document.getElementById("overlay");
+
+  window.addEventListener("scroll", () => {
+    if (!locked) return;
+
+    const rect = lockSection.getBoundingClientRect();
+    if (rect.top <= 0) {
+      document.body.style.overflow = "hidden";
+      overlay.classList.add("show");
+    }
+  });
+
+  overlay.addEventListener("click", () => {
+    locked = false;
+    document.body.style.overflow = "auto";
+    overlay.classList.remove("show");
+  });
+</script>
+
 </body>
 </html>

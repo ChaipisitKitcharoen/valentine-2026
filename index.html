@@ -24,6 +24,10 @@
     text-align: center;
   }
 
+  .soft { background: #fff; }
+  .memory { background: #fafafa; }
+  .ending { background: #fff; }
+
   h1 {
     font-size: 1.6rem;
     font-weight: 400;
@@ -31,24 +35,25 @@
   }
 
   p {
-    max-width: 340px;
+    max-width: 360px;
     margin: 0 auto;
     font-size: 1rem;
   }
 
-  .soft {
-    background: #fff;
+  img {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 16px;
+    margin-bottom: 16px;
   }
 
-  .memory {
-    background: #fafafa;
+  a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
   }
 
-  .ending {
-    background: #fff;
-  }
-
-  /* overlay */
+  /* overlay lock */
   .overlay {
     position: fixed;
     inset: 0;
@@ -75,7 +80,7 @@
 
 <body>
 
-<!-- COVER -->
+<!-- 1. COVER -->
 <section class="soft">
   <div>
     <h1>I like you, very much.</h1>
@@ -83,22 +88,43 @@
   </div>
 </section>
 
-<!-- MEMORY -->
+<!-- 2. MEMORY 1 -->
 <section class="memory">
   <div>
+    <img src="images/01.jpg" alt="memory 1">
     <p>
-      ปีที่ผ่านมา<br>
-      ไม่ได้สมบูรณ์แบบทุกวัน<br><br>
-      แต่เรายังหัวเราะ<br>
-      ยังงอนกัน<br>
-      แล้วยังเลือกอยู่ด้วยกัน
+      ปีที่ผ่านมามีทั้งวันที่ง่าย<br>
+      และวันที่ไม่เข้าใจกัน<br><br>
+      แต่เราก็ยังกลับมานั่งข้างกันเสมอ
     </p>
   </div>
 </section>
 
-<!-- LOCK POINT -->
+<!-- 3. MEMORY 2 -->
+<section class="memory">
+  <div>
+    <img src="images/02.jpg" alt="memory 2">
+    <p>
+      วันที่ไม่มีแผน<br>
+      กลับเป็นวันที่เราหัวเราะมากที่สุด
+    </p>
+  </div>
+</section>
+
+<!-- 4. MUSIC -->
+<section class="soft">
+  <div>
+    <p>เพลงที่ฟังด้วยกันทั้งปี</p><br>
+    <a href="https://open.spotify.com/playlist/XXXX" target="_blank">
+      ▶ เปิดเพลย์ลิสต์ของเรา
+    </a>
+  </div>
+</section>
+
+<!-- 5. LOCK POINT -->
 <section id="lock" class="memory">
   <div>
+    <img src="images/03.jpg" alt="memory 3">
     <p>
       บางวันที่เธอไม่ได้น่ารัก<br>
       บางวันที่เราไม่เข้าใจกัน<br><br>
@@ -107,7 +133,7 @@
   </div>
 </section>
 
-<!-- END -->
+<!-- 6. ENDING -->
 <section class="ending">
   <div>
     <p>
@@ -134,7 +160,6 @@
 
   window.addEventListener("scroll", () => {
     if (!locked) return;
-
     const rect = lockSection.getBoundingClientRect();
     if (rect.top <= 0) {
       document.body.style.overflow = "hidden";
